@@ -1,5 +1,6 @@
 import { WORDS } from "./words.js";
 
+let statContainer = document.getElementById("stat-container");
 const NUMBER_OF_GUESSES = 6;
 let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
@@ -151,7 +152,7 @@ function checkGuess() {
 		toastr.success("You guessed right! Game over!");
 		guessesRemaining = 0;
 		winner();
-		stats();
+		stats("rightguess");
 		return;
 	} else {
 		guessesRemaining -= 1;
@@ -162,7 +163,7 @@ function checkGuess() {
 			toastr.error("You've run out of guesses! Game over!");
 			toastr.info(`The right word was: "${rightGuessString}"`);
 			loser();
-			stats();
+			stats("fail");
 		}
 	}
 }
@@ -220,7 +221,7 @@ function loser() {
 	localStorage.setItem("loses", loses);
 }
 
-function stats(e) {
+function placeStats() {
 	let gamesWon = localStorage.getItem("wins");
 	let gamesLost = localStorage.getItem("loses");
 	if (gamesWon == null) {
@@ -237,47 +238,63 @@ function stats(e) {
 	statScreen.setAttribute("id", "statscreen");
 	statScreen.innerHTML = `<div><h2>Statistics</h2><p>Games played = ${played}<p>Games won = ${gamesWon}</P>
 	<p>Games Lost = ${gamesLost}</p><p>Win % = ${percentage}</p><button class="reset-button" id="reset-button">Reset Stats</button></div>`;
-	let statContainer = document.getElementById("stat-container");
+
 	statContainer.appendChild(statScreen);
 
-	if (e === "open") {
-		setTimeout(() => {
-			statContainer.addEventListener("click", closeStats);
-			document.addEventListener("keyup", function (e) {
-				if (e.key === "Enter") {
-					closeStats();
-					e = "close";
-				}
-			});
-			function closeStats() {
-				if (statScreen) {
-					let statScreenTwo = document.getElementById("statscreen");
-					statContainer.removeChild(statScreenTwo);
-				}
-			}
-		}, 500);
-	} else {
-		setTimeout(() => {
-			statContainer.addEventListener("click", closeScreen);
-			document.addEventListener("keyup", function (e) {
-				if (e.key === "Enter") {
-					closeScreen();
-				}
-			});
-		}, 500);
-	}
-	function closeScreen() {
-		document.location.reload(false);
-	}
-
-	let resetButton = document.getElementById("reset-button");
+	//reset button
+	let resetButton = document.querySelector("#reset-button");
 	resetButton.addEventListener("click", cleanStorage);
 }
-
 function cleanStorage() {
 	localStorage.removeItem("wins");
 	localStorage.removeItem("loses");
 }
+placeStats();
 
-let showStatsButton = document.getElementById("show-stats");
-showStatsButton.addEventListener("click", stats("open"));
+function stats(e) {
+	console.log(e);
+	let statContainer = document.getElementById("stat-container");
+
+	if (e == "closeonly") {
+		statContainer.classList.remove("back");
+		statContainer.classList.add("forward");
+		statContainer.addEventListener(
+			"click",
+			function () {
+				statContainer.classList.remove("forward");
+				statContainer.classList.add("back");
+			},
+			true
+		);
+	} else if (e == "rightguess" || "fail") {
+		let statScreen = document.querySelector("#statscreen");
+		let gamesWon = localStorage.getItem("wins");
+		let gamesLost = localStorage.getItem("loses");
+		if (gamesWon == null) {
+			gamesWon = 0;
+		}
+		if (gamesLost == null) {
+			gamesLost = 0;
+		}
+		let played = Number(gamesWon) + Number(gamesLost);
+		let percentage = Math.round((Number(gamesWon) / played) * 100);
+		statScreen.innerHTML = `<div><h2>Statistics</h2><p>Games played = ${played}<p>Games won = ${gamesWon}</P>
+	<p>Games Lost = ${gamesLost}</p><p>Win % = ${percentage}</p><button class="reset-button" id="reset-button">Reset Stats</button></div>`;
+		statContainer.classList.remove("back");
+		statContainer.classList.add("forward");
+		statContainer.addEventListener(
+			"click",
+			function () {
+				document.location.reload(false);
+			},
+			true
+		);
+	} else {
+		console.log("something wrong");
+	}
+}
+
+const showStatsButton = document.querySelector("#show-stats");
+showStatsButton.addEventListener("click", function () {
+	stats("closeonly");
+});
