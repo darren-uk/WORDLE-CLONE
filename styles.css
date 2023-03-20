@@ -95,6 +95,7 @@ header > button:hover {
 	margin: 0 4px;
 	cursor: pointer;
 	text-transform: uppercase;
+	user-select: none;
 }
 
 .first-row,
@@ -137,10 +138,16 @@ header {
 .back {
 	z-index: -1000;
 	visibility: hidden;
+	/* animation-name: fade-in;
+	animation-duration: 1.2s;
+	animation-fill-mode: backwards; */
 }
 .forward {
 	z-index: 1000;
 	visibility: visible;
+	/* animation-name: fade-in;
+	animation-duration: 1.2s;
+	animation-fill-mode: forwards; */
 }
 
 .statscreen {

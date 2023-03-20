@@ -152,7 +152,11 @@ function checkGuess() {
 		toastr.success("You guessed right! Game over!");
 		guessesRemaining = 0;
 		winner();
-		stats("rightguess");
+		// setTimeout(stats("rightguess"), 5000);
+		setTimeout(() => {
+			stats("rightguess");
+		}, "1500");
+
 		return;
 	} else {
 		guessesRemaining -= 1;
@@ -280,6 +284,7 @@ function stats(e) {
 		let percentage = Math.round((Number(gamesWon) / played) * 100);
 		statScreen.innerHTML = `<div><h2>Statistics</h2><p>Games played = ${played}<p>Games won = ${gamesWon}</P>
 	<p>Games Lost = ${gamesLost}</p><p>Win % = ${percentage}</p><button class="reset-button" id="reset-button">Reset Stats</button></div>`;
+		animateCSS(statContainer, "fadeInDown");
 		statContainer.classList.remove("back");
 		statContainer.classList.add("forward");
 		statContainer.addEventListener(
