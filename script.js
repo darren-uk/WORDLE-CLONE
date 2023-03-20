@@ -166,7 +166,9 @@ function checkGuess() {
 			toastr.error("You've run out of guesses! Game over!");
 			toastr.info(`The right word was: "${rightGuessString}"`);
 			loser();
-			statsPanel();
+			setTimeout(() => {
+				statsPanel();
+			}, "1500");
 		}
 	}
 }
