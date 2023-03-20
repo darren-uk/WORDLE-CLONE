@@ -285,6 +285,7 @@ function stats(e) {
 		statScreen.innerHTML = `<div><h2>Statistics</h2><p>Games played = ${played}<p>Games won = ${gamesWon}</P>
 	<p>Games Lost = ${gamesLost}</p><p>Win % = ${percentage}</p><button class="reset-button" id="reset-button">Reset Stats</button></div>`;
 		animateCSS(statContainer, "fadeInDown");
+		statContainer.style.setProperty("--animate-duration", "1.5s");
 		statContainer.classList.remove("back");
 		statContainer.classList.add("forward");
 		statContainer.addEventListener(
