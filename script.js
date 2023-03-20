@@ -237,7 +237,7 @@ function statsPanel(e) {
 	let gamesWon = localStorage.getItem("wins");
 	let gamesLost = localStorage.getItem("loses");
 	let played = Number(gamesWon) + Number(gamesLost);
-	let percentage = Math.round((Number(gamesWon) / played) * 100);
+
 	if (gamesWon == null) {
 		gamesWon = 0;
 	}
@@ -245,6 +245,11 @@ function statsPanel(e) {
 		gamesLost = 0;
 	}
 
+	let percentage = Math.round((Number(gamesWon) / played) * 100);
+	console.log(percentage);
+	if (isNaN(percentage)) {
+		percentage = 0;
+	}
 	// check if stats panel already exists
 	if (checkPanel) {
 		let statScreen = document.querySelector("#statscreen");
