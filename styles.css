@@ -1,5 +1,5 @@
 :root {
-	--green: #6aaa64;
+	--green: rgb(106, 170, 100);
 	--yellow: #c9b458;
 	--grey: #787c7e;
 	--red: #aa6464;
@@ -17,10 +17,12 @@ p {
 /* Header stylings */
 h1 {
 	margin: 0 1rem 0 1rem;
+	color: var(--green);
 }
 
 h1 > span {
 	font-size: 0.3em;
+	color: var(--grey);
 }
 
 header > button {
@@ -41,6 +43,7 @@ header > button:hover {
 	flex-direction: column;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
+	min-height: calc(18rem + 20px);
 }
 
 .letter-box {
@@ -80,10 +83,6 @@ header > button:hover {
 	display: flex;
 }
 
-/* .second-row {
-	margin: 0.5rem 0;
-} */
-
 .keyboard-button {
 	display: flex;
 	align-items: center;
@@ -115,6 +114,7 @@ header {
 	display: flex;
 	justify-content: center;
 	align-items: baseline;
+	padding-bottom: 1rem;
 }
 
 .stat-icon,
@@ -153,22 +153,26 @@ header {
 	width: 100%;
 	min-height: 100vh;
 	background: rgba(255, 255, 255, 0.749);
-	animation-name: fade-in;
-	animation-duration: 1.2s;
-	animation-fill-mode: forwards;
 }
-@keyframes fade-in {
-	0% {
-		opacity: 0%;
-	}
-	100% {
-		opacity: 100%;
-	}
-}
+
 .statscreen > div {
 	background: white;
-	box-shadow: 4px 4px 8px rgba(188, 186, 186, 0.779);
+	box-shadow: 8px 8px 8px rgba(199, 198, 198, 0.779);
 	padding: 3rem;
+	border: 8px solid var(--grey);
+	border-radius: 6px;
+}
+
+#reset-button {
+	background: var(--red);
+	color: white;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	font-weight: bold;
+	cursor: pointer;
+	margin-top: 2rem;
+}
+#reset-button:hover {
+	scale: 1.1;
 }
 .statscreen h2 {
 	padding-bottom: 2rem;
@@ -176,7 +180,6 @@ header {
 	border-bottom: 1px solid rgba(128, 128, 128, 0.814);
 }
 .statscreen p {
-	background: white;
 	font-size: 1.2rem;
 	min-width: 15ch;
 	text-align: left;

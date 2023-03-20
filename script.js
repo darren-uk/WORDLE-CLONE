@@ -248,7 +248,6 @@ function statsPanel(e) {
 	}
 
 	let percentage = Math.round((Number(gamesWon) / played) * 100);
-	console.log(percentage);
 	if (isNaN(percentage)) {
 		percentage = 0;
 	}
