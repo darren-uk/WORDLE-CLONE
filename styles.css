@@ -95,6 +95,7 @@ header > button:hover {
 	margin: 0 4px;
 	cursor: pointer;
 	text-transform: uppercase;
+	user-select: none;
 }
 
 .first-row,
