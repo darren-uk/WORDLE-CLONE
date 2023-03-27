@@ -248,3 +248,16 @@ header {
 .slider {
 	cursor: pointer;
 }
+@media only screen and (max-width: 600px) {
+	:root {
+		font-size: 14px;
+	}
+}
+@media only screen and (max-width: 350px) {
+	:root {
+		font-size: 13px;
+	}
+	#keyboard-cont {
+		margin-top: 0;
+	}
+}
