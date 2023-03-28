@@ -250,7 +250,15 @@ header {
 }
 @media only screen and (max-width: 600px) {
 	:root {
-		font-size: 14px;
+		font-size: 16px;
+	}
+}
+@media only screen and (max-width: 380px) {
+	:root {
+		font-size: 15px;
+	}
+	#keyboard-cont {
+		margin-top: 0;
 	}
 }
 @media only screen and (max-width: 350px) {
@@ -259,5 +267,11 @@ header {
 	}
 	#keyboard-cont {
 		margin-top: 0;
+	}
+	header {
+		padding-bottom: 0;
+	}
+	.keyboard-button {
+		min-width: 1.5rem;
 	}
 }
