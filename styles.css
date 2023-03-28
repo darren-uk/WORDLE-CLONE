@@ -268,4 +268,10 @@ header {
 	#keyboard-cont {
 		margin-top: 0;
 	}
+	header {
+		padding-bottom: 0;
+	}
+	.keyboard-button {
+		min-width: 1.5rem;
+	}
 }
