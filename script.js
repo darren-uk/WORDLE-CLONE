@@ -254,18 +254,34 @@ function statsPanel(e) {
 	if (isNaN(percentage)) {
 		percentage = 0;
 	}
+	//Set award system
+	let awardDisplay = "";
+	if (played < 11) {
+		awardDisplay = `<div class="award-line"><p>Keep going to earn your first reward</p><img src="./images/star-solid.svg" class="award-icon color-newbie"> </div>`;
+	} else if (played > 10 && percentage < 70) {
+		awardDisplay = `<div class="award-line"><p>There's bad and there's BAD!</p><img src="./images/face-sad-tear-regular.svg" class="award-icon color-bronze"> </div>`;
+	} else if (played > 10 && percentage < 85) {
+		awardDisplay = `<div class="award-line"><p>Not great, keep trying</p><img src="./images/medal-solid.svg" class="award-icon color-bronze"> </div>`;
+	} else if (played > 10 && percentage < 100) {
+		awardDisplay = `<div class="award-line"><p>Top player</p><img src="./images/medal-solid.svg" class="award-icon color-silver"> </div>`;
+	} else if (played > 10 && percentage == 100) {
+		awardDisplay = `<div class="award-line"><p>WOW ! Never lost a game</p><img src="./images/medal-solid.svg" class="award-icon color-gold"> </div>`;
+	}
+
 	// check if stats panel already exists
 	if (checkPanel) {
 		let statScreen = document.querySelector("#statscreen");
 		statScreen.innerHTML = `<div><h2>Statistics</h2><p>Games played = ${played}<p>Games won = ${gamesWon}</P>
-	<p>Games Lost = ${gamesLost}</p><p>Win % = ${percentage}</p><button class="reset-button" id="reset-button">Reset Stats</button></div>`;
+	<p>Games Lost = ${gamesLost}</p><p>Win % = ${percentage}</p>${awardDisplay}<button class="reset-button" id="reset-button">Reset Stats</button></div>`;
 	} else {
 		//create stat screen
 		let statScreen = document.createElement("div");
 		statScreen.classList.add("statscreen");
 		statScreen.setAttribute("id", "statscreen");
-		statScreen.innerHTML = `<div><h2>Statistics</h2><p>Games played = ${played}<p>Games won = ${gamesWon}</P>
-	<p>Games Lost = ${gamesLost}</p><p>Win % = ${percentage}</p><button class="reset-button" id="reset-button">Reset Stats</button></div>`;
+		statScreen.innerHTML = `<div><h2>Statistics <img src="./images/ranking-star-solid.svg" class="top-icon"></h2><p>Games played = ${played}<p>Games won = ${gamesWon}</P>
+	<p>Games Lost = ${gamesLost}</p><p>Win % = ${percentage}</p>
+	${awardDisplay}
+	<button class="reset-button" id="reset-button">Reset Stats</button></div>`;
 
 		// Add stat screen to DOM
 		statContainer.appendChild(statScreen);
