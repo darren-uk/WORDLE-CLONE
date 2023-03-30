@@ -213,12 +213,51 @@ header {
 	margin-bottom: 2rem;
 	border-bottom: 1px solid var(--seperator);
 }
-.statscreen p {
+.statscreen {
 	font-size: 1.2rem;
+}
+.statscreen p {
 	min-width: 15ch;
 	text-align: left;
 }
+/* .award-line > img {
+	display: block;
+} */
 
+/* .award-line {
+	font-size: 0.8rem;
+	max-width: 20ch;
+} */
+
+.award-line {
+	display: flex;
+}
+.award-line > img {
+	flex-grow: 1;
+}
+.award-line > p {
+	max-width: 15ch;
+}
+.award-icon {
+	width: 1.8rem;
+	aspect-ratio: 1;
+}
+.color-newbie {
+	filter: invert(87%) sepia(10%) saturate(7374%) hue-rotate(322deg)
+		brightness(103%) contrast(98%);
+}
+.color-bronze {
+	filter: invert(50%) sepia(99%) saturate(329%) hue-rotate(349deg)
+		brightness(90%) contrast(94%);
+}
+.color-silver {
+	filter: invert(72%) sepia(8%) saturate(109%) hue-rotate(214deg)
+		brightness(94%) contrast(86%);
+}
+.color-gold {
+	filter: invert(74%) sepia(82%) saturate(601%) hue-rotate(0deg) brightness(97%)
+		contrast(104%);
+}
 .green-text {
 	color: var(--green);
 	/* text-shadow: 0px 0px 4px white; */
