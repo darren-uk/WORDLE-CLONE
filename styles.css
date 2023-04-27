@@ -1,6 +1,10 @@
+* {
+	transition: color 0.2s ease-in, background-color 0.2s ease-in;
+}
+
 :root {
-	--green: #6aaa64;
-	--yellow: #c9b458;
+	--green: rgb(106, 170, 100);
+	--yellow: rgb(201, 180, 88);
 	--grey: #787c7e;
 	--red: #aa6464;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -72,7 +76,7 @@ header > button:hover {
 	flex-direction: column;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
-	min-height: calc(18rem + 20px);
+	min-height: calc(18rem + 25px);
 }
 
 .letter-box {
