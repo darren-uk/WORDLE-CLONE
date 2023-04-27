@@ -1,6 +1,9 @@
 import { WORDS } from "./words.js";
 import { commonEnglishWords } from "./common-english-words.js";
 
+const green = "rgb(106, 170, 100)";
+const yellow = "rgb(201, 180, 88)";
+
 const NUMBER_OF_GUESSES = 6;
 let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
@@ -8,7 +11,7 @@ let nextLetter = 0;
 // let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)];
 let rightGuessString =
 	commonEnglishWords[Math.floor(Math.random() * commonEnglishWords.length)];
-// rightGuessString = "weigh";
+// rightGuessString = "ruins";
 console.log(rightGuessString);
 function initBoard() {
 	let board = document.getElementById("game-board");
@@ -81,11 +84,11 @@ function shadeKeyBoard(letter, color) {
 	for (const elem of document.getElementsByClassName("keyboard-button")) {
 		if (elem.textContent === letter) {
 			let oldColor = elem.style.backgroundColor;
-			if (oldColor === "green") {
+			if (oldColor === green) {
 				return;
 			}
 
-			if (oldColor === "yellow" && color !== "green") {
+			if (oldColor === yellow && color !== green) {
 				return;
 			}
 
@@ -130,10 +133,10 @@ function checkGuess() {
 			// letter is in the right position
 			if (currentGuess[i] === rightGuess[i]) {
 				// shade green
-				letterColor = "var(--green)";
+				letterColor = green;
 			} else {
 				// shade box yellow
-				letterColor = "var(--yellow)";
+				letterColor = yellow;
 			}
 
 			rightGuess[letterPosition] = "#";
