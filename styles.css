@@ -72,7 +72,7 @@ header > button:hover {
 	flex-direction: column;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
-	min-height: calc(18rem + 20px);
+	min-height: calc(18rem + 25px);
 }
 
 .letter-box {
