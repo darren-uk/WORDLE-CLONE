@@ -221,6 +221,7 @@ function winner() {
 	}
 	wins = +wins + 1;
 	localStorage.setItem("wins", wins);
+	setCurrentStreak();
 }
 
 function loser() {
@@ -230,11 +231,38 @@ function loser() {
 	}
 	loses = +loses + 1;
 	localStorage.setItem("loses", loses);
+
+	//reset current streak
+	localStorage.setItem("current-streak", 0);
+}
+
+function setCurrentStreak() {
+	let currentStreak = localStorage.getItem("current-streak");
+	if (!currentStreak) {
+		currentStreak = 0;
+	}
+	currentStreak = +currentStreak + 1;
+	localStorage.setItem("current-streak", currentStreak);
+
+	let maxStreak = localStorage.getItem("max-streak");
+
+	if (!maxStreak) {
+		localStorage.setItem("max-streak", currentStreak);
+	}
+
+	if (maxStreak >= currentStreak) {
+		console.log("max is more or equal to running total");
+	} else {
+		maxStreak = +maxStreak + 1;
+		localStorage.setItem("max-streak", maxStreak);
+	}
 }
 
 function cleanStorage() {
 	localStorage.removeItem("wins");
 	localStorage.removeItem("loses");
+	localStorage.removeItem("current-streak");
+	localStorage.removeItem("max-streak");
 }
 
 function statsPanel(e) {
@@ -244,6 +272,8 @@ function statsPanel(e) {
 	// Grab statistics from local storage
 	let gamesWon = localStorage.getItem("wins");
 	let gamesLost = localStorage.getItem("loses");
+	let maxStreak = localStorage.getItem("max-streak");
+	let currentStreak = localStorage.getItem("current-streak");
 	let played = Number(gamesWon) + Number(gamesLost);
 
 	if (gamesWon == null) {
@@ -252,38 +282,31 @@ function statsPanel(e) {
 	if (gamesLost == null) {
 		gamesLost = 0;
 	}
+	if (maxStreak == null) {
+		maxStreak = 0;
+	}
+	if (currentStreak == null) {
+		currentStreak = 0;
+	}
 
 	let percentage = Math.round((Number(gamesWon) / played) * 100);
 	if (isNaN(percentage)) {
 		percentage = 0;
-	}
-	//Set award system
-	let awardDisplay = "";
-	if (played < 11) {
-		awardDisplay = `<div class="award-line"><p>Keep going to earn your first reward</p><img src="./images/star-solid.svg" class="award-icon color-newbie"> </div>`;
-	} else if (played > 10 && percentage < 70) {
-		awardDisplay = `<div class="award-line"><p>There's bad and there's BAD!</p><img src="./images/face-sad-tear-regular.svg" class="award-icon color-bronze"> </div>`;
-	} else if (played > 10 && percentage < 85) {
-		awardDisplay = `<div class="award-line"><p>Not great, keep trying</p><img src="./images/medal-solid.svg" class="award-icon color-bronze"> </div>`;
-	} else if (played > 10 && percentage < 100) {
-		awardDisplay = `<div class="award-line"><p>Top player</p><img src="./images/medal-solid.svg" class="award-icon color-silver"> </div>`;
-	} else if (played > 10 && percentage == 100) {
-		awardDisplay = `<div class="award-line"><p>WOW ! Never lost a game</p><img src="./images/medal-solid.svg" class="award-icon color-gold"> </div>`;
 	}
 
 	// check if stats panel already exists
 	if (checkPanel) {
 		let statScreen = document.querySelector("#statscreen");
 		statScreen.innerHTML = `<div><h2>Statistics</h2><p>Games played = ${played}<p>Games won = ${gamesWon}</P>
-	<p>Games Lost = ${gamesLost}</p><p>Win % = ${percentage}</p>${awardDisplay}<button class="reset-button" id="reset-button">Reset Stats</button></div>`;
+	<p>Games Lost = ${gamesLost}</p><p>Current streak = ${currentStreak}</p><hr><p>Win % = ${percentage}</p><p>Max streak = ${maxStreak}</p><button class="reset-button" id="reset-button">Reset Stats</button></div>`;
 	} else {
 		//create stat screen
 		let statScreen = document.createElement("div");
 		statScreen.classList.add("statscreen");
 		statScreen.setAttribute("id", "statscreen");
 		statScreen.innerHTML = `<div><h2>Statistics <img src="./images/ranking-star-solid.svg" class="top-icon"></h2><p>Games played = ${played}<p>Games won = ${gamesWon}</P>
-	<p>Games Lost = ${gamesLost}</p><p>Win % = ${percentage}</p>
-	${awardDisplay}
+	<p>Games Lost = ${gamesLost}</p><p>Current streak = ${currentStreak}</p><hr><p>Win % = ${percentage}</p><p>Max streak = ${maxStreak}</p>
+
 	<button class="reset-button" id="reset-button">Reset Stats</button></div>`;
 
 		// Add stat screen to DOM
