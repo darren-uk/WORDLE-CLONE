@@ -3,6 +3,7 @@
 }
 
 :root {
+	--warning-color: #ecc410;
 	--green: rgb(106, 170, 100);
 	--yellow: rgb(201, 180, 88);
 	--grey: #787c7e;
@@ -12,6 +13,8 @@
 	--main-background: #fff;
 	--icon-color: invert(0%) sepia(7%) saturate(7474%) hue-rotate(42deg)
 		brightness(95%) contrast(105%);
+	--warning-color: invert(93%) sepia(18%) saturate(4275%) hue-rotate(348deg)
+		brightness(94%) contrast(96%);
 	--letter-box-border: #808080;
 	--letter-box-filled: var(--grey);
 	--letter-filled-color: #2c2b2b;
@@ -161,7 +164,14 @@ header {
 	margin: 0 1rem;
 	filter: var(--icon-color);
 }
-
+.warning-icon {
+	width: 1rem;
+	aspect-ratio: 1;
+	margin: 0 1rem;
+	filter: var(--warning-color);
+	vertical-align: middle;
+	position: relative;
+}
 #stat-container {
 	position: absolute;
 	top: 0;
@@ -223,28 +233,7 @@ header {
 .statscreen p {
 	min-width: 15ch;
 	text-align: left;
-}
-/* .award-line > img {
-	display: block;
-} */
-
-/* .award-line {
-	font-size: 0.8rem;
-	max-width: 20ch;
-} */
-
-.award-line {
-	display: flex;
-}
-.award-line > img {
-	flex-grow: 1;
-}
-.award-line > p {
-	max-width: 15ch;
-}
-.award-icon {
-	width: 1.8rem;
-	aspect-ratio: 1;
+	font-size: 1.1rem;
 }
 .color-newbie {
 	filter: invert(87%) sepia(10%) saturate(7374%) hue-rotate(322deg)

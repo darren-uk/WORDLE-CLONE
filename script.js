@@ -298,7 +298,10 @@ function statsPanel(e) {
 	if (checkPanel) {
 		let statScreen = document.querySelector("#statscreen");
 		statScreen.innerHTML = `<div><h2>Statistics</h2><p>Games played = ${played}<p>Games won = ${gamesWon}</P>
-	<p>Games Lost = ${gamesLost}</p><p>Current streak = ${currentStreak}</p><hr><p>Win % = ${percentage}</p><p>Max streak = ${maxStreak}</p><button class="reset-button" id="reset-button">Reset Stats</button></div>`;
+	<p>Games Lost = ${gamesLost}</p><p>Current streak = ${currentStreak}</p><hr><p>Win % = ${percentage}</p><p>Max streak = ${maxStreak}</p>
+
+	<img src="./images/triangle-exclamation-solid.svg" class="warning-icon" alt=""><button class="reset-button" id="reset-button">Reset Stats</button><img src="./images/triangle-exclamation-solid.svg" class="warning-icon" alt="">
+	</div>`;
 	} else {
 		//create stat screen
 		let statScreen = document.createElement("div");
@@ -307,7 +310,8 @@ function statsPanel(e) {
 		statScreen.innerHTML = `<div><h2>Statistics <img src="./images/ranking-star-solid.svg" class="top-icon"></h2><p>Games played = ${played}<p>Games won = ${gamesWon}</P>
 	<p>Games Lost = ${gamesLost}</p><p>Current streak = ${currentStreak}</p><hr><p>Win % = ${percentage}</p><p>Max streak = ${maxStreak}</p>
 
-	<button class="reset-button" id="reset-button">Reset Stats</button></div>`;
+	<img src="./images/triangle-exclamation-solid.svg" class="warning-icon" alt=""><button class="reset-button" id="reset-button">Reset Stats</button><img src="./images/triangle-exclamation-solid.svg" class="warning-icon" alt="">
+	</div>`;
 
 		// Add stat screen to DOM
 		statContainer.appendChild(statScreen);
