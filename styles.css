@@ -61,7 +61,7 @@ h1 {
 }
 
 h1 > span {
-	font-size: 0.3em;
+	font-size: 1rem;
 	color: var(--grey);
 }
 
@@ -73,9 +73,18 @@ header > button:hover {
 	cursor: pointer;
 }
 
+.main-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	max-height: 100vh;
+	overflow: hidden;
+}
+
 #game-board {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	flex-direction: column;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
@@ -177,7 +186,7 @@ header {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100%;
+	min-height: 100vh;
 	overflow: hidden;
 	display: flex;
 	justify-content: center;
@@ -186,29 +195,69 @@ header {
 .back {
 	z-index: -1000;
 	visibility: hidden;
+	opacity: 0;
+	transition: opacity 1s;
 }
 .forward {
 	z-index: 1000;
 	visibility: visible;
+	opacity: 1;
+	transition: opacity 1s;
 }
 
 .statscreen {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
-	min-height: 100vh;
+	padding: 1rem 4rem;
 	background: var(--page-shadow);
+	background: rgb(237, 236, 236);
+	border-radius: 0.5rem;
+	font-size: 1.2rem;
+	min-height: 100vh;
 }
 
-.statscreen > div {
-	background: var(--stat-background);
-	box-shadow: var(--stat-shadow);
-	padding: 3rem;
-	border: 8px solid var(--grey);
-	border-radius: 6px;
-	color: var(--stat-text);
+.statscreen hr {
+	min-width: 100%;
+}
+
+.statscreen h2 {
+	color: var(--green);
+}
+.statscreen h2 > span {
+	font-size: 1rem;
+	color: var(--grey);
+}
+
+.statscreen p {
+	margin: 1rem 0;
+	min-width: 15ch;
+	text-align: left;
+	font-size: 1.1rem;
+}
+
+.statscreen .start-line {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	line-height: 3;
+}
+
+.close-box {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	padding: 0.5rem 1rem;
+	border-radius: 5px;
+	border: 1px solid var(--red);
+	cursor: pointer;
+}
+.close-box:hover,
+.close-box:focus {
+	border: 3px solid var(--red);
 }
 
 #reset-button {
@@ -217,24 +266,25 @@ header {
 	padding: 0.5rem 1rem 0.5rem 1rem;
 	font-weight: bold;
 	cursor: pointer;
-	margin-top: 2rem;
+	margin-top: 1rem;
 }
-#reset-button:hover {
-	scale: 1.1;
+
+#reset-button:hover,
+#reset-button:focus,
+#start-button:hover,
+#start-button:focus {
+	scale: 1.04;
 }
-.statscreen h2 {
-	padding-bottom: 2rem;
-	margin-bottom: 2rem;
-	border-bottom: 1px solid var(--seperator);
+
+#start-button {
+	background: var(--green);
+	color: white;
+	padding: 0.5rem 1rem 0.5rem 1rem;
+	font-weight: bold;
+	cursor: pointer;
+	margin-left: 1rem;
 }
-.statscreen {
-	font-size: 1.2rem;
-}
-.statscreen p {
-	min-width: 15ch;
-	text-align: left;
-	font-size: 1.1rem;
-}
+
 .color-newbie {
 	filter: invert(87%) sepia(10%) saturate(7374%) hue-rotate(322deg)
 		brightness(103%) contrast(98%);
