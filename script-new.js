@@ -1,6 +1,47 @@
 //constant elements
 const statContainer = document.getElementById("stat-container");
 const statButton = document.querySelector("#stat-button");
+const green = "rgb(106, 170, 100)";
+const yellow = "rgb(201, 180, 88)";
+const NUMBER_OF_GUESSES = 6;
+
+// SETUP KEYBOARD
+document.getElementById("keyboard-cont").addEventListener("click", (e) => {
+	const target = e.target;
+
+	if (!target.classList.contains("keyboard-button")) {
+		return;
+	}
+	let key = target.textContent;
+
+	if (key === "Del") {
+		key = "Backspace";
+	}
+
+	document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
+});
+
+const animateCSS = (element, animation, prefix = "animate__") =>
+	// We create a Promise and return it
+	new Promise((resolve, reject) => {
+		const animationName = `${prefix}${animation}`;
+		// const node = document.querySelector(element);
+		const node = element;
+		node.style.setProperty("--animate-duration", "0.3s");
+
+		node.classList.add(`${prefix}animated`, animationName);
+
+		// When the animation ends, we clean the classes and resolve the Promise
+		function handleAnimationEnd(event) {
+			event.stopPropagation();
+			node.classList.remove(`${prefix}animated`, animationName);
+			resolve("Animation ended");
+		}
+
+		node.addEventListener("animationend", handleAnimationEnd, {
+			once: true,
+		});
+	});
 
 function statsPanel() {
 	//check local storage
@@ -52,56 +93,14 @@ function statsPanel() {
 }
 statsPanel();
 
-// Watch for clicks on keyboard
-document.getElementById("keyboard-cont").addEventListener("click", (e) => {
-	const target = e.target;
-
-	if (!target.classList.contains("keyboard-button")) {
-		return;
-	}
-	let key = target.textContent;
-
-	if (key === "Del") {
-		key = "Backspace";
-	}
-
-	document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
-});
-
-const animateCSS = (element, animation, prefix = "animate__") =>
-	// We create a Promise and return it
-	new Promise((resolve, reject) => {
-		const animationName = `${prefix}${animation}`;
-		// const node = document.querySelector(element);
-		const node = element;
-		node.style.setProperty("--animate-duration", "0.3s");
-
-		node.classList.add(`${prefix}animated`, animationName);
-
-		// When the animation ends, we clean the classes and resolve the Promise
-		function handleAnimationEnd(event) {
-			event.stopPropagation();
-			node.classList.remove(`${prefix}animated`, animationName);
-			resolve("Animation ended");
-		}
-
-		node.addEventListener("animationend", handleAnimationEnd, {
-			once: true,
-		});
-	});
-
 function startGame() {
 	fetch("words.json")
 		.then((res) => res.json())
 		.then((words) => {
 			let allWords = words.all; // returns array
 			let commonWords = words.common; //returns array
-
-			const green = "rgb(106, 170, 100)";
-			const yellow = "rgb(201, 180, 88)";
-
-			const NUMBER_OF_GUESSES = 6;
 			let guessesRemaining = NUMBER_OF_GUESSES;
+			console.log(guessesRemaining);
 			let currentGuess = [];
 			let nextLetter = 0;
 			let answer = commonWords[Math.floor(Math.random() * commonWords.length)];
@@ -126,7 +125,6 @@ function startGame() {
 				}
 			}
 			initBoard();
-
 			// watch user inputs
 			document.addEventListener("keyup", (e) => {
 				if (guessesRemaining === 0) {
@@ -157,7 +155,6 @@ function startGame() {
 					return;
 				}
 				pressedKey = pressedKey.toLowerCase();
-
 				let row =
 					document.getElementsByClassName("letter-row")[6 - guessesRemaining];
 				let box = row.children[nextLetter];
@@ -244,8 +241,9 @@ function startGame() {
 							// shade box yellow
 							letterColor = yellow;
 						}
-
+						/////////////////////////////////////////////
 						rightGuess[letterPosition] = "#";
+						////////////////////////////////////////////
 					}
 
 					let delay = 250 * i;
@@ -269,7 +267,7 @@ function startGame() {
 						statContainer.classList.remove("back");
 						statContainer.classList.add("forward");
 					}, "1500");
-					startButtons();
+					// startButtons();
 					return;
 				} else {
 					guessesRemaining -= 1;
@@ -286,7 +284,7 @@ function startGame() {
 							statContainer.classList.remove("back");
 							statContainer.classList.add("forward");
 						}, "1500");
-						startButtons();
+						// startButtons();
 						return;
 					}
 				}
@@ -359,6 +357,7 @@ function startButtons() {
 		});
 	});
 }
+
 startButtons();
 
 //Stat screen Button
