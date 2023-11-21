@@ -3,7 +3,6 @@ const statContainer = document.getElementById("stat-container");
 const statButton = document.querySelector("#stat-button");
 const green = "rgb(106, 170, 100)";
 const yellow = "rgb(201, 180, 88)";
-const NUMBER_OF_GUESSES = 6;
 
 // SETUP KEYBOARD
 document.getElementById("keyboard-cont").addEventListener("click", (e) => {
@@ -20,28 +19,6 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
 
 	document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
 });
-
-const animateCSS = (element, animation, prefix = "animate__") =>
-	// We create a Promise and return it
-	new Promise((resolve, reject) => {
-		const animationName = `${prefix}${animation}`;
-		// const node = document.querySelector(element);
-		const node = element;
-		node.style.setProperty("--animate-duration", "0.3s");
-
-		node.classList.add(`${prefix}animated`, animationName);
-
-		// When the animation ends, we clean the classes and resolve the Promise
-		function handleAnimationEnd(event) {
-			event.stopPropagation();
-			node.classList.remove(`${prefix}animated`, animationName);
-			resolve("Animation ended");
-		}
-
-		node.addEventListener("animationend", handleAnimationEnd, {
-			once: true,
-		});
-	});
 
 function statsPanel() {
 	//check local storage
@@ -73,7 +50,7 @@ function statsPanel() {
     <div class="statscreen">
         <div class="close-box" id="close-box">X</div>
         <h2>Wordle <span>Unlimited</span></h2>
-        <p class="start-line">Want to try again? <button class="start-button" id="start-button">Start New Game</button></p>
+        <p class="start-line">Want to try again? <button class="start-button" id="stat-start-button">Start New Game</button></p>
 		<hr>
 		<p>Win % = ${percentage}</p>
         <p>Games played = ${played}</p>
@@ -85,10 +62,17 @@ function statsPanel() {
 		<hr>
         <p><img src="./images/triangle-exclamation-solid.svg" class="warning-icon"><button class="reset-button" id="reset-button">Reset Stats</button><img src="./images/triangle-exclamation-solid.svg" class="warning-icon"></p>
 	</div>`;
+
 	const closeBox = document.getElementById("close-box");
 	closeBox.addEventListener("click", () => {
 		statContainer.classList.remove("forward");
 		statContainer.classList.add("back");
+	});
+	const statStartButton = document.getElementById("stat-start-button");
+	statStartButton.addEventListener("click", () => {
+		statContainer.classList.remove("forward");
+		statContainer.classList.add("back");
+		startGame();
 	});
 }
 statsPanel();
@@ -97,12 +81,14 @@ function startGame() {
 	fetch("words.json")
 		.then((res) => res.json())
 		.then((words) => {
+			const NUMBER_OF_GUESSES = 6;
 			let allWords = words.all; // returns array
 			let commonWords = words.common; //returns array
 			let guessesRemaining = NUMBER_OF_GUESSES;
-			console.log(guessesRemaining);
 			let currentGuess = [];
 			let nextLetter = 0;
+			// let letterPosition = 0;
+
 			let answer = commonWords[Math.floor(Math.random() * commonWords.length)];
 			console.log(answer); // show answer in console
 
@@ -125,6 +111,7 @@ function startGame() {
 				}
 			}
 			initBoard();
+
 			// watch user inputs
 			document.addEventListener("keyup", (e) => {
 				if (guessesRemaining === 0) {
@@ -143,6 +130,7 @@ function startGame() {
 				}
 
 				let found = pressedKey.match(/[a-z]/gi);
+
 				if (!found || found.length > 1) {
 					return;
 				} else {
@@ -154,7 +142,6 @@ function startGame() {
 				if (nextLetter === 5) {
 					return;
 				}
-				pressedKey = pressedKey.toLowerCase();
 				let row =
 					document.getElementsByClassName("letter-row")[6 - guessesRemaining];
 				let box = row.children[nextLetter];
@@ -163,6 +150,7 @@ function startGame() {
 				box.classList.add("filled-box");
 				currentGuess.push(pressedKey);
 				nextLetter += 1;
+				// return;
 			}
 
 			function deleteLetter() {
@@ -227,6 +215,15 @@ function startGame() {
 					let letter = currentGuess[i];
 
 					let letterPosition = rightGuess.indexOf(currentGuess[i]);
+
+					// const statStartButton = document.getElementById("stat-start-button");
+					// statStartButton.addEventListener("click", () => {
+					// 	i = 0;
+					// 	letter = 0;
+					// 	box = 0;
+					// 	letterPosition = 0;
+					// });
+
 					// is letter in the correct guess
 					if (letterPosition === -1) {
 						letterColor = "var(--letter-box-filled)";
@@ -241,9 +238,7 @@ function startGame() {
 							// shade box yellow
 							letterColor = yellow;
 						}
-						/////////////////////////////////////////////
 						rightGuess[letterPosition] = "#";
-						////////////////////////////////////////////
 					}
 
 					let delay = 250 * i;
@@ -263,11 +258,9 @@ function startGame() {
 					winner();
 					statsPanel();
 					setTimeout(() => {
-						// statsPanel();
 						statContainer.classList.remove("back");
 						statContainer.classList.add("forward");
 					}, "1500");
-					// startButtons();
 					return;
 				} else {
 					guessesRemaining -= 1;
@@ -280,11 +273,9 @@ function startGame() {
 						loser();
 						statsPanel();
 						setTimeout(() => {
-							// statsPanel();
 							statContainer.classList.remove("back");
 							statContainer.classList.add("forward");
 						}, "1500");
-						// startButtons();
 						return;
 					}
 				}
@@ -335,6 +326,27 @@ function startGame() {
 					localStorage.setItem("max-streak", maxStreak);
 				}
 			}
+			const animateCSS = (element, animation, prefix = "animate__") =>
+				// We create a Promise and return it
+				new Promise((resolve, reject) => {
+					const animationName = `${prefix}${animation}`;
+					// const node = document.querySelector(element);
+					const node = element;
+					node.style.setProperty("--animate-duration", "0.3s");
+
+					node.classList.add(`${prefix}animated`, animationName);
+
+					// When the animation ends, we clean the classes and resolve the Promise
+					function handleAnimationEnd(event) {
+						event.stopPropagation();
+						node.classList.remove(`${prefix}animated`, animationName);
+						resolve("Animation ended");
+					}
+
+					node.addEventListener("animationend", handleAnimationEnd, {
+						once: true,
+					});
+				});
 		})
 		.catch((error) => {
 			let errorBox = document.querySelector("#error-box");
@@ -347,18 +359,18 @@ function startGame() {
 // Buttons ----------------------------------------
 
 // Start Game Buttons
-function startButtons() {
-	let startButtons = document.querySelectorAll(".start-button");
-	startButtons.forEach((startButton) => {
+function startButton() {
+	let startButton = document.getElementById("start-button");
+	if (startButton) {
 		startButton.addEventListener("click", () => {
 			statContainer.classList.remove("forward");
 			statContainer.classList.add("back");
 			startGame();
 		});
-	});
+	}
 }
 
-startButtons();
+startButton();
 
 //Stat screen Button
 statButton.addEventListener("click", () => {

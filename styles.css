@@ -271,12 +271,12 @@ header {
 
 #reset-button:hover,
 #reset-button:focus,
-#start-button:hover,
-#start-button:focus {
+.start-button:hover,
+.start-button:focus {
 	scale: 1.04;
 }
 
-#start-button {
+.start-button {
 	background: var(--green);
 	color: white;
 	padding: 0.5rem 1rem 0.5rem 1rem;
