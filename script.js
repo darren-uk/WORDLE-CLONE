@@ -64,7 +64,7 @@ function insertLetter(pressedKey) {
 
 	let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining];
 	let box = row.children[nextLetter];
-	animateCSS(box, "pulse");
+	applyAnimation(box, "pulse");
 	box.textContent = pressedKey;
 	box.classList.add("filled-box");
 	currentGuess.push(pressedKey);
@@ -145,7 +145,7 @@ function checkGuess() {
 		let delay = 250 * i;
 		setTimeout(() => {
 			//flip box
-			animateCSS(box, "flipInX");
+			applyAnimation(box, "flipInX");
 			//shade box
 			box.style.backgroundColor = letterColor;
 			shadeKeyBoard(letter, letterColor);
@@ -194,25 +194,32 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
 	document.dispatchEvent(new KeyboardEvent("keyup", { key: key }));
 });
 
-const animateCSS = (element, animation, prefix = "animate__") =>
-	// We create a Promise and return it
-	new Promise((resolve, reject) => {
-		const animationName = `${prefix}${animation}`;
-		// const node = document.querySelector(element);
-		const node = element;
-		node.style.setProperty("--animate-duration", "0.3s");
+// const animateCSS = (element, animation, prefix = "animate__") =>
+// 	// We create a Promise and return it
+// 	new Promise((resolve, reject) => {
+// 		const animationName = `${prefix}${animation}`;
+// 		// const node = document.querySelector(element);
+// 		const node = element;
+// 		node.style.setProperty("--animate-duration", "0.3s");
 
-		node.classList.add(`${prefix}animated`, animationName);
+// 		node.classList.add(`${prefix}animated`, animationName);
 
-		// When the animation ends, we clean the classes and resolve the Promise
-		function handleAnimationEnd(event) {
-			event.stopPropagation();
-			node.classList.remove(`${prefix}animated`, animationName);
-			resolve("Animation ended");
-		}
+// 		// When the animation ends, we clean the classes and resolve the Promise
+// 		function handleAnimationEnd(event) {
+// 			event.stopPropagation();
+// 			node.classList.remove(`${prefix}animated`, animationName);
+// 			resolve("Animation ended");
+// 		}
 
-		node.addEventListener("animationend", handleAnimationEnd, { once: true });
+// 		node.addEventListener("animationend", handleAnimationEnd, { once: true });
+// 	});
+
+function applyAnimation(element, animation, duration = "0.3s") {
+	element.style.animation = `${animation} ${duration}`;
+	element.addEventListener("animationend", () => {
+		element.style.animation = "";
 	});
+}
 
 function winner() {
 	let wins = localStorage.getItem("wins");
@@ -320,7 +327,7 @@ function statsPanel(e) {
 	//Animate fade in
 	statContainer.classList.remove("back");
 	statContainer.classList.add("forward");
-	animateCSS(statContainer, "fadeInDown");
+	applyAnimation(statContainer, "fadeInDown");
 	statContainer.style.setProperty("--animate-duration", "1.5s");
 
 	//listen for click to close stat panel
