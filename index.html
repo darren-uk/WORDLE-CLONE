@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="preload" href="styles.css" as="style" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,12 +12,22 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://word-game-2023.netlify.app/" />
     <meta property="og:image" content="https://word-game-2023.netlify.app/images/screenshot-meta.png" />
-    <link rel="stylesheet" href="styles.css">
+
+    <script>
+        // Render blocking JS: to stop flashing on load when dark mode.
+        if (localStorage.theme) document.documentElement.setAttribute("data-theme", localStorage.theme);
+    </script>
+    <link rel="stylesheet" href="styles.css" media="all">
     <!-- Toastr for in game notifications -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
-    <!-- Animate CSS for board animations -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="/favicons/32x32.png" type="image/x-icon">
+    <link rel=icon href="/favicons/16x16.png" sizes="16x16" type="image/png">
+    <link rel=icon href="favicons/ico32x32.ico" sizes="32x32 48x48" type="image/vnd.microsoft.icon">
+    <link rel=icon href="favicons/iphone57x57.png" sizes="57x57" type="image/png">
+    <link rel=icon href="favicons/180x180.png" sizes="180x180" type="image/png">
+    <link rel=icon href="favicons/512x512.png" sizes="any" type="image/png">
+
 
 
     <title>Wordle Clone</title>
@@ -90,7 +101,7 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <script src="script-new.js" type="module"></script>
+    <script src="script.js" type="module"></script>
 </body>
 
 </html>

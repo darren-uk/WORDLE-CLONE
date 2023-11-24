@@ -3,18 +3,19 @@
 }
 
 :root {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	--stat-shadow: 8px 8px 8px rgba(199, 198, 198, 0.779);
 	--warning-color: #ecc410;
-	--green: rgb(106, 170, 100);
 	--yellow: rgb(201, 180, 88);
 	--grey: #787c7e;
-	--red: #aa6464;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-	--main-background: #fff;
-	--icon-color: invert(0%) sepia(7%) saturate(7474%) hue-rotate(42deg)
-		brightness(95%) contrast(105%);
 	--warning-color: invert(93%) sepia(18%) saturate(4275%) hue-rotate(348deg)
 		brightness(94%) contrast(96%);
+
+	--main-background: #fff;
+	--green: rgb(106, 170, 100);
+	--red: #aa6464;
+	--icon-color: invert(0%) sepia(7%) saturate(7474%) hue-rotate(42deg)
+		brightness(95%) contrast(105%);
 	--letter-box-border: #808080;
 	--letter-box-filled: var(--grey);
 	--letter-filled-color: #2c2b2b;
@@ -24,10 +25,12 @@
 	--stat-text: #000;
 	--seperator: var(--grey);
 	--page-shadow: rgba(255, 255, 255, 0.749);
-	--stat-shadow: 8px 8px 8px rgba(199, 198, 198, 0.779);
 }
+
 [data-theme="dark"] {
 	--main-background: #121213;
+	--green: rgb(74, 120, 70);
+	--red: #b15252;
 	--icon-color: invert(100%) sepia(8%) saturate(0%) hue-rotate(157deg)
 		brightness(107%) contrast(108%);
 	--letter-box-border: #3a3a3c;
@@ -41,12 +44,15 @@
 	--page-shadow: rgba(81, 80, 80, 0.749);
 	--stat-shadow: 8px 8px 8px rgba(41, 39, 39, 0.779);
 }
+
 * {
 	box-sizing: border-box;
 }
 
 body {
 	background: var(--main-background);
+	margin: 0;
+	padding: 0;
 }
 
 h1,
@@ -64,7 +70,9 @@ h1 > span {
 	font-size: 1rem;
 	color: var(--grey);
 }
-
+header {
+	margin-top: 1rem;
+}
 header > button {
 	border: none;
 	background-color: transparent;
@@ -77,7 +85,8 @@ header > button:hover {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	max-height: 100vh;
+	height: 100vh;
+	height: 100dvh;
 	overflow: hidden;
 }
 
@@ -117,11 +126,11 @@ header > button:hover {
 
 /* KEYBOARD */
 #keyboard-cont {
-	margin: 1rem;
+	/* margin: 1rem; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 4rem;
+	/* margin-top: 4rem; */
 }
 
 #keyboard-cont div {
@@ -355,5 +364,34 @@ header {
 	}
 	.keyboard-button {
 		min-width: 1.5rem;
+	}
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes flipInX {
+	0% {
+		transform: perspective(400px) rotateX(90deg);
+		opacity: 0;
+	}
+	40% {
+		transform: perspective(400px) rotateX(-10deg);
+	}
+	70% {
+		transform: perspective(400px) rotateX(10deg);
+	}
+	100% {
+		transform: perspective(400px) rotateX(0deg);
+		opacity: 1;
 	}
 }
