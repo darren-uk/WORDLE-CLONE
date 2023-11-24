@@ -13,10 +13,10 @@
     <meta property="og:url" content="https://word-game-2023.netlify.app/" />
     <meta property="og:image" content="https://word-game-2023.netlify.app/images/screenshot-meta.png" />
 
-    <script>
+    <!-- <script>
         // Render blocking JS: to stop flashing on load when dark mode.
         if (localStorage.theme) document.documentElement.setAttribute("data-theme", localStorage.theme);
-    </script>
+    </script> -->
     <link rel="stylesheet" href="styles.css" media="all">
     <!-- Toastr for in game notifications -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
@@ -96,12 +96,12 @@
             </div>
         </div>
     </div>
-
+    <script src="script-refactored.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <script src="script.js" type="module"></script>
+
 </body>
 
 </html>
