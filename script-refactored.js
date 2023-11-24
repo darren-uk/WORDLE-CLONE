@@ -196,6 +196,7 @@ function statsPanel() {
 		statsPanel();
 	});
 }
+statsPanel();
 
 function winner() {
 	let wins = localStorage.getItem("wins");
@@ -327,6 +328,36 @@ statButton.addEventListener("click", handleStatButtonClick);
 let startButton = document.getElementById("start-button");
 if (startButton) {
 	startButton.addEventListener("click", handleStartButtonClick);
+}
+
+//DARK THEME SWITCH
+
+const toggleSwitch = document.querySelector(
+	'.theme-switch input[type="checkbox"]'
+);
+
+toggleSwitch.addEventListener("change", switchTheme, false);
+
+function switchTheme(e) {
+	if (e.target.checked) {
+		document.documentElement.setAttribute("data-theme", "dark");
+		localStorage.setItem("theme", "dark"); //add this
+	} else {
+		document.documentElement.setAttribute("data-theme", "light");
+		localStorage.setItem("theme", "light"); //add this
+	}
+}
+
+const currentTheme = localStorage.getItem("theme")
+	? localStorage.getItem("theme")
+	: null;
+
+if (currentTheme) {
+	document.documentElement.setAttribute("data-theme", currentTheme);
+
+	if (currentTheme === "dark") {
+		toggleSwitch.checked = true;
+	}
 }
 
 // Fetch data
