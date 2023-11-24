@@ -38,10 +38,6 @@ function initBoard() {
 	}
 }
 
-// More functions...
-// ...
-
-// Functions
 function endGame() {
 	gameActive = false;
 	coloredKeys.forEach((c) => {
