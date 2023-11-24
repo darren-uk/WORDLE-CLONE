@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="preload" href="styles.css" as="style" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,82 +12,96 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://word-game-2023.netlify.app/" />
     <meta property="og:image" content="https://word-game-2023.netlify.app/images/screenshot-meta.png" />
-    <link rel="stylesheet" href="styles.css">
+
+    <!-- <script>
+        // Render blocking JS: to stop flashing on load when dark mode.
+        if (localStorage.theme) document.documentElement.setAttribute("data-theme", localStorage.theme);
+    </script> -->
+    <link rel="stylesheet" href="styles.css" media="all">
     <!-- Toastr for in game notifications -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
-    <!-- Animate CSS for board animations -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="/favicons/32x32.png" type="image/x-icon">
+    <link rel=icon href="/favicons/16x16.png" sizes="16x16" type="image/png">
+    <link rel=icon href="favicons/ico32x32.ico" sizes="32x32 48x48" type="image/vnd.microsoft.icon">
+    <link rel=icon href="favicons/iphone57x57.png" sizes="57x57" type="image/png">
+    <link rel=icon href="favicons/180x180.png" sizes="180x180" type="image/png">
+    <link rel=icon href="favicons/512x512.png" sizes="any" type="image/png">
+
 
 
     <title>Wordle Clone</title>
 </head>
 
 <body>
-    <div id="stat-container" class="stat-container back"></div>
-    <header>
-        <button id="show-stats">
-            <img src="./images/chart-simple-solid.svg" class="top-icon">
-        </button>
-        <h1>Wordle <span>Clone</span></h1>
-        <div class="theme-switch-wrapper">
-            <label class="theme-switch" for="checkbox">
-                <input type="checkbox" id="checkbox" />
-                <div class="slider round"><img src="./images/lightbulb-solid.svg" class="top-icon" alt=""></div>
-            </label>
+    <div class="main-container">
+        <div id="stat-container" class="stat-container back"></div>
+        <header>
+            <button id="stat-button">
+                <img src="./images/chart-simple-solid.svg" class="top-icon">
+            </button>
+            <h1>Wordle <span>unlimited</span></h1>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"><img src="./images/lightbulb-solid.svg" class="top-icon" alt=""></div>
+                </label>
+            </div>
+
+        </header>
+
+
+        <div id="game-board">
+            <div id="error-box"></div>
+            <p class="start-line"><button class="start-button" id="start-button">Start New Game</button>
+            </p>
         </div>
 
-    </header>
 
 
-    <div id="game-board">
-
+        <div id="keyboard-cont">
+            <div class="first-row">
+                <button class="keyboard-button">q</button>
+                <button class="keyboard-button">w</button>
+                <button class="keyboard-button">e</button>
+                <button class="keyboard-button">r</button>
+                <button class="keyboard-button">t</button>
+                <button class="keyboard-button">y</button>
+                <button class="keyboard-button">u</button>
+                <button class="keyboard-button">i</button>
+                <button class="keyboard-button">o</button>
+                <button class="keyboard-button">p</button>
+            </div>
+            <div class="second-row">
+                <button class="keyboard-button">a</button>
+                <button class="keyboard-button">s</button>
+                <button class="keyboard-button">d</button>
+                <button class="keyboard-button">f</button>
+                <button class="keyboard-button">g</button>
+                <button class="keyboard-button">h</button>
+                <button class="keyboard-button">j</button>
+                <button class="keyboard-button">k</button>
+                <button class="keyboard-button">l</button>
+            </div>
+            <div class="third-row">
+                <button class="keyboard-button green-text">Enter</button>
+                <button class="keyboard-button">z</button>
+                <button class="keyboard-button">x</button>
+                <button class="keyboard-button">c</button>
+                <button class="keyboard-button">v</button>
+                <button class="keyboard-button">b</button>
+                <button class="keyboard-button">n</button>
+                <button class="keyboard-button">m</button>
+                <button class="keyboard-button red-text">Del</button>
+            </div>
+        </div>
     </div>
-
-
-
-    <div id="keyboard-cont">
-        <div class="first-row">
-            <button class="keyboard-button">q</button>
-            <button class="keyboard-button">w</button>
-            <button class="keyboard-button">e</button>
-            <button class="keyboard-button">r</button>
-            <button class="keyboard-button">t</button>
-            <button class="keyboard-button">y</button>
-            <button class="keyboard-button">u</button>
-            <button class="keyboard-button">i</button>
-            <button class="keyboard-button">o</button>
-            <button class="keyboard-button">p</button>
-        </div>
-        <div class="second-row">
-            <button class="keyboard-button">a</button>
-            <button class="keyboard-button">s</button>
-            <button class="keyboard-button">d</button>
-            <button class="keyboard-button">f</button>
-            <button class="keyboard-button">g</button>
-            <button class="keyboard-button">h</button>
-            <button class="keyboard-button">j</button>
-            <button class="keyboard-button">k</button>
-            <button class="keyboard-button">l</button>
-        </div>
-        <div class="third-row">
-            <button class="keyboard-button green-text">Enter</button>
-            <button class="keyboard-button">z</button>
-            <button class="keyboard-button">x</button>
-            <button class="keyboard-button">c</button>
-            <button class="keyboard-button">v</button>
-            <button class="keyboard-button">b</button>
-            <button class="keyboard-button">n</button>
-            <button class="keyboard-button">m</button>
-            <button class="keyboard-button red-text">Del</button>
-        </div>
-    </div>
-
+    <script src="script-refactored.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <script src="script.js" type="module"></script>
+
 </body>
 
 </html>
