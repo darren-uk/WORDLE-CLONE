@@ -1,4 +1,4 @@
-### Wordle Clone
+# Wordle Clone
 
 ## Version 2
 
@@ -8,13 +8,13 @@ A word game to explore and learn Javascript
 
 Live version at https://word-game-2023.netlify.app/
 
-# New features
+### New features
 
 - Start game button now present on first load / page refresh
 
 - Game can be started from inside stats panel
 
-# Bug fixes
+### Bug fixes
 
 - New games do not refresh the web page. Only one call to web server on first load
 
@@ -26,7 +26,7 @@ Live version at https://word-game-2023.netlify.app/
 
 - Game can be restarted mid way through another game without letters repeating from previous game.
 
-# Future improvments to come
+### Future improvments to come
 
 - Add 2 step to reseting stats incase button is accidentaly clicked on.
 
