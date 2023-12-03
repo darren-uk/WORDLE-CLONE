@@ -26,6 +26,8 @@ Live version at https://word-game-2023.netlify.app/
 
 - Game can be restarted mid way through another game without letters repeating from previous game.
 
+- dark mode added to stat screen
+
 ### Future improvments to come
 
 - Add 2 step to reseting stats incase button is accidentaly clicked on.
