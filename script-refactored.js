@@ -58,7 +58,7 @@ function checkGuess() {
 	if (guessString.length != 5) {
 		let redBox = document.getElementById("red-alert");
 		redBox.innerHTML =
-			'<img src="../images/shield-solid.svg"/> Not enough letters!';
+			'<img src="../images/shield-solid.svg"/>&nbsp; Not enough letters!';
 		redBox.style.display = "block";
 		setTimeout(() => {
 			redBox.style.display = "none";
@@ -69,7 +69,7 @@ function checkGuess() {
 	if (!allWords.includes(guessString)) {
 		let redBox = document.getElementById("red-alert");
 		redBox.innerHTML =
-			'<img src="../images/shield-solid.svg"/> Word not in list!!';
+			'<img src="../images/shield-solid.svg"/>&nbsp; Word not in list !';
 		redBox.style.display = "block";
 		setTimeout(() => {
 			redBox.style.display = "none";
@@ -114,7 +114,8 @@ function checkGuess() {
 
 	if (guessString === answer) {
 		let greenBox = document.getElementById("green-alert");
-		greenBox.innerHTML = "You guessed right! <br><br> Game over!";
+		greenBox.innerHTML =
+			'<img src="../images/trophy-solid.svg"/>&nbsp; You guessed right! <br><br> Game over!';
 		greenBox.style.display = "block";
 
 		guessesRemaining = 0;
@@ -135,7 +136,7 @@ function checkGuess() {
 
 		if (guessesRemaining === 0) {
 			let redBox = document.getElementById("red-alert");
-			redBox.innerHTML = `<img src="../images/shield-solid.svg"/> You've run out of guesses ! <br><br>Game Over ! <br><br>The right word was: <span>${answer}</span>`;
+			redBox.innerHTML = `<img src="../images/shield-solid.svg"/>&nbsp; You've run out of guesses ! <br><br>Game Over ! <br><br>The right word was: <span>${answer}</span>`;
 			redBox.style.display = "block";
 			setTimeout(() => {
 				redBox.style.display = "none";
