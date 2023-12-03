@@ -177,8 +177,8 @@ function statsPanel() {
 	if (isNaN(percentage)) {
 		percentage = 0;
 	}
-	//print statspanel
 
+	//print statspanel
 	statContainer.innerHTML = `
             <div class="statscreen">
                 <div class="close-box" id="close-box">X</div>
@@ -208,6 +208,7 @@ function statsPanel() {
 		endGame();
 		startGame();
 	});
+
 	//reset button
 	const resetButton = document.querySelector("#reset-button");
 	resetButton.addEventListener("click", () => {
@@ -215,7 +216,6 @@ function statsPanel() {
 		localStorage.removeItem("loses");
 		localStorage.setItem("current-streak", 0);
 		localStorage.setItem("max-streak", 0);
-		// statText();
 		statsPanel();
 	});
 }
@@ -364,10 +364,10 @@ toggleSwitch.addEventListener("change", switchTheme, false);
 function switchTheme(e) {
 	if (e.target.checked) {
 		document.documentElement.setAttribute("data-theme", "dark");
-		localStorage.setItem("theme", "dark"); //add this
+		localStorage.setItem("theme", "dark");
 	} else {
 		document.documentElement.setAttribute("data-theme", "light");
-		localStorage.setItem("theme", "light"); //add this
+		localStorage.setItem("theme", "light");
 	}
 }
 
