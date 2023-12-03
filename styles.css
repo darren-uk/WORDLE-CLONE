@@ -92,6 +92,40 @@ header > button:hover {
 	overflow: hidden;
 }
 
+.green-alert,
+.red-alert {
+	display: none;
+	position: fixed;
+	top: 12px;
+	right: 12px;
+	padding: 15px 3em 15px 3em;
+	width: max-content;
+	max-width: 25em;
+	/* width: 25em; */
+	transition: color 0.25s ease-in, background-color 0.2s ease-in;
+	z-index: 99999;
+	pointer-events: none;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	color: #fff;
+	border-radius: 3px;
+	text-align: center;
+}
+
+.red-alert span {
+	text-transform: uppercase;
+	font-size: 1.2rem;
+	font-weight: bold;
+}
+
+.red-alert {
+	background-color: #bd362f;
+	transition: background-color 0.2s ease-in;
+}
+.green-alert {
+	background-color: #51a351;
+	transition: background-color 0.2s ease-in;
+}
+
 #game-board {
 	display: flex;
 	align-items: center;

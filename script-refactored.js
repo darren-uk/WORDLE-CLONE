@@ -56,12 +56,24 @@ function checkGuess() {
 	}
 
 	if (guessString.length != 5) {
-		toastr.error("Not enough letters!");
+		let redBox = document.getElementById("red-alert");
+		redBox.innerHTML =
+			'<img src="../images/shield-solid.svg"/> Not enough letters!';
+		redBox.style.display = "block";
+		setTimeout(() => {
+			redBox.style.display = "none";
+		}, 3000);
 		return;
 	}
 
 	if (!allWords.includes(guessString)) {
-		toastr.error("Word not in list!");
+		let redBox = document.getElementById("red-alert");
+		redBox.innerHTML =
+			'<img src="../images/shield-solid.svg"/> Word not in list!!';
+		redBox.style.display = "block";
+		setTimeout(() => {
+			redBox.style.display = "none";
+		}, 3000);
 		return;
 	}
 
@@ -101,7 +113,10 @@ function checkGuess() {
 	}
 
 	if (guessString === answer) {
-		toastr.success("You guessed right! Game over!");
+		let greenBox = document.getElementById("green-alert");
+		greenBox.innerHTML = "You guessed right! <br><br> Game over!";
+		greenBox.style.display = "block";
+
 		guessesRemaining = 0;
 		winner();
 		statsPanel();
@@ -109,6 +124,9 @@ function checkGuess() {
 			statContainer.classList.remove("back");
 			statContainer.classList.add("forward");
 		}, "1500");
+		setTimeout(() => {
+			greenBox.style.display = "none";
+		}, 3000);
 		return;
 	} else {
 		guessesRemaining -= 1;
@@ -116,8 +134,13 @@ function checkGuess() {
 		nextLetter = 0;
 
 		if (guessesRemaining === 0) {
-			toastr.error("You've run out of guesses! Game over!");
-			toastr.info(`The right word was: "${answer}"`);
+			let redBox = document.getElementById("red-alert");
+			redBox.innerHTML = `<img src="../images/shield-solid.svg"/> You've run out of guesses ! <br><br>Game Over ! <br><br>The right word was: <span>${answer}</span>`;
+			redBox.style.display = "block";
+			setTimeout(() => {
+				redBox.style.display = "none";
+			}, 4000);
+
 			loser();
 			statsPanel();
 			setTimeout(() => {
