@@ -22,6 +22,8 @@ Live version at https://word-game-2023.netlify.app/
 
 - removed dependency for animate.css external library
 
+- removed dependency for toastr.js / toastr.css / jquery.js
+
 - reseting stats / clear stats now show instantly in stats panel.
 
 - Game can be restarted mid way through another game without letters repeating from previous game.
