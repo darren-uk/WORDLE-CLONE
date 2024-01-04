@@ -1,12 +1,18 @@
-# Wordle Clone
+# Retro Wordle
 
 ## Version 2
 
-last updated : november 2023
-
-A word game to explore and learn Javascript
+last updated : December 2023
 
 Live version at https://word-game-2023.netlify.app/
+
+## Description
+
+A word game to explore and learn Javascript. I based this game on a tutorial from https://www.freecodecamp.org/news/build-a-wordle-clone-in-javascript/ and Wordle game from New York Times https://www.nytimes.com/games/wordle/index.html .
+
+I built up this game to include statistics which are stored on users local storage in browser and a light/dark mode. I have refined the style to make a more retro theme and made it mobile friendly.
+
+If you find a bug or want to add a word to the dictionary please contact me via github https://github.com/darren-uk or Twitter @darren*colson https://twitter.com/darren_colson*
 
 ### New features
 
@@ -40,3 +46,28 @@ Live version at https://word-game-2023.netlify.app/
 
   Based on a tutorial from https://www.freecodecamp.org/news/build-a-wordle-clone-in-javascript/
   Repo sited at https://github.com/Morgenstern2573/wordle_clone.git
+
+### Roadmap
+
+- Add settings button to stat screen
+- Add settings panel
+
+In settings panel add
+
+- - clear settings without streak
+- - clear streak
+- - select pop color theme
+- - select classic color theme
+- - view contact and licence details
+
+- Set up color schemes in css file. Classic-light, Classic-dark, Pop-light, Pop-dark
+
+- set up aria's in HTML tag for color-theme & data-theme
+
+- let currentColorTheme = document.documentElement.getAttribute("color-theme");
+
+if ((currentColorTheme = "retro")) {
+document.documentElement.setAttribute("data-theme", "dark-retro");
+}
+
+- reset stat menu when exiting from settings menu

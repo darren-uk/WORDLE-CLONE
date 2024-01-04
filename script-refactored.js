@@ -1,7 +1,7 @@
 // Constants
 const NUMBER_OF_GUESSES = 6;
-const green = "rgb(106, 170, 100)";
-const yellow = "rgb(201, 180, 88)";
+const green = "rgb(138, 188, 177)";
+const yellow = "rgb(241, 179, 96)";
 
 // Variables
 let gameActive = false;
@@ -41,8 +41,14 @@ function initBoard() {
 function endGame() {
 	gameActive = false;
 	coloredKeys.forEach((c) => {
-		c.style.backgroundColor = "var(--key-background)";
-		c.classList.remove("light-text");
+		if (
+			c.classList.contains("green-text") ||
+			c.classList.contains("red-text")
+		) {
+		} else {
+			c.style.backgroundColor = "var(--key-background)";
+			c.classList.remove("light-text");
+		}
 	});
 }
 
@@ -62,7 +68,7 @@ function checkGuess() {
 		redBox.style.display = "block";
 		setTimeout(() => {
 			redBox.style.display = "none";
-		}, 3000);
+		}, 2000);
 		return;
 	}
 
@@ -73,7 +79,7 @@ function checkGuess() {
 		redBox.style.display = "block";
 		setTimeout(() => {
 			redBox.style.display = "none";
-		}, 3000);
+		}, 2000);
 		return;
 	}
 
@@ -115,7 +121,7 @@ function checkGuess() {
 	if (guessString === answer) {
 		let greenBox = document.getElementById("green-alert");
 		greenBox.innerHTML =
-			'<img src="../images/trophy-solid.svg"/>&nbsp; You guessed right! <br><br> Game over!';
+			'<img src="../images/trophy-solid.svg"/>&nbsp; You guessed right! <br> Game over!';
 		greenBox.style.display = "block";
 
 		guessesRemaining = 0;
@@ -124,7 +130,7 @@ function checkGuess() {
 		setTimeout(() => {
 			statContainer.classList.remove("back");
 			statContainer.classList.add("forward");
-		}, "1500");
+		}, "3000");
 		setTimeout(() => {
 			greenBox.style.display = "none";
 		}, 3000);
@@ -183,18 +189,18 @@ function statsPanel() {
 	statContainer.innerHTML = `
             <div class="statscreen">
                 <div class="close-box" id="close-box">X</div>
-                <h2>Wordle <span>Unlimited</span></h2>
-                <p class="start-line">Want to try again? <button class="start-button" id="stat-start-button">Start New Game</button></p>
+                <h2>Wordle<span>pop</span></h2>
+                <p class="settings-line"><img src="./images/gear-solid.svg" class="settings-icon"><button class="settings-button" id="settings-button">Settings</button></p>
                 <hr>
                 <p>Win % = ${percentage}</p>
                 <p>Games played = ${played}</p>
-                <p>Games won = ${gamesWon}</P>
-                <p>Games Lost = ${gamesLost}</p>
+                <p><span style="color:var(--green);">Games won = ${gamesWon}</span></P>
+                <p><span style="color:var(--red);">Games Lost = ${gamesLost}</span></p>
 
-                <p>Current streak = ${currentStreak}</p>
+                <p><span style="color:var(--yellow);">Current streak = ${currentStreak}</span></p>
                 <p>Max streak = ${maxStreak}</p>
                 <hr>
-                <p><img src="./images/triangle-exclamation-solid.svg" class="warning-icon"><button class="reset-button" id="reset-button">Reset Stats</button><img src="./images/triangle-exclamation-solid.svg" class="warning-icon"></p>
+				<p class="start-line">Want to try again? <button class="start-button" id="stat-start-button">Start New Game</button></p>
             </div>`;
 
 	const closeBox = document.getElementById("close-box");
@@ -210,15 +216,46 @@ function statsPanel() {
 		startGame();
 	});
 
-	//reset button
-	const resetButton = document.querySelector("#reset-button");
-	resetButton.addEventListener("click", () => {
-		localStorage.removeItem("wins");
-		localStorage.removeItem("loses");
-		localStorage.setItem("current-streak", 0);
-		localStorage.setItem("max-streak", 0);
-		statsPanel();
+	// settings button
+
+	const settingsButton = document.querySelector("#settings-button");
+	settingsButton.addEventListener("click", () => {
+		statContainer.innerHTML = `
+		<div class="statscreen">
+				<div class="back-box" id="back-box">Back</div>
+                <div class="close-box" id="close-box">X</div>
+                <h2>Wordle<span>pop</span></h2>
+                <hr>
+				<button>Clear stats (excluding streak)</button>
+				<button>Clear streak</button>
+				<hr>
+				<button>select pop theme</button>
+				<button>select classic theme</button>
+				<hr>
+				<p> contact me via Twitter</p>
+				<a href="#">Readme details</a>
+                <hr>
+				<p class="start-line">Want to try again? <button class="start-button" id="stat-start-button">Start New Game</button></p>
+            </div>
+		`;
+
+		const closeBox = document.getElementById("close-box");
+		closeBox.addEventListener("click", () => {
+			statContainer.classList.remove("forward");
+			statContainer.classList.add("back");
+		});
 	});
+
+	//reset button
+
+	// const resetButton = document.querySelector("#reset-button");
+	// resetButton.addEventListener("click", () => {
+	// 	localStorage.removeItem("wins");
+	// 	localStorage.removeItem("loses");
+	// 	localStorage.setItem("current-streak", 0);
+	// 	// localStorage.setItem("max-streak", 0);
+	// 	statsPanel();
+	// });
 }
 statsPanel();
 
@@ -397,3 +434,9 @@ fetch("words.json")
 			"Please try again later (error connecting with our server)";
 		console.log("ERROR " + error);
 	});
+
+let currentColorTheme = document.documentElement.getAttribute("color-theme");
+
+if ((currentColorTheme = "retro")) {
+	document.documentElement.setAttribute("data-theme", "dark-retro");
+}

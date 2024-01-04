@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" color-theme="retro">
 
 <head>
     <link rel="preload" href="styles.css" as="style" />
@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- OPEN GL META DATA FOR SOCIAL MEDIA -->
-    <meta property="og:title" content="Wordle Clone" />
-    <meta property="og:description" content="A Wordle Game but with unlimited attempts." />
+    <meta property="og:title" content="Retro Wordle" />
+    <meta property="og:description" content="A Wordle Game with unlimited attempts." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://word-game-2023.netlify.app/" />
     <meta property="og:image" content="https://word-game-2023.netlify.app/images/screenshot-meta.png" />
@@ -17,6 +17,11 @@
         // Render blocking JS: to stop flashing on load when dark mode.
         if (localStorage.theme) document.documentElement.setAttribute("data-theme", localStorage.theme);
     </script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+    <!-- Style sheets -->
     <link rel="stylesheet" href="styles.css" media="all">
     <!-- Favicons -->
     <link rel="shortcut icon" href="/favicons/32x32.png" type="image/x-icon">
@@ -28,7 +33,7 @@
 
 
 
-    <title>Wordle Clone</title>
+    <title>PIXELword</title>
 </head>
 
 <body>
@@ -44,7 +49,10 @@
             <button id="stat-button">
                 <img src="./images/chart-simple-solid.svg" class="top-icon">
             </button>
-            <h1>Wordle <span>unlimited</span></h1>
+            <!-- <h1>Pixel<span>Word</span></h1> -->
+            <!-- <h1><img src="./images/space-awesome.svg" width="20px" alt=""><span> invadle </span><img
+                    src="./images/space-awesome.svg" width="20px" alt=""></h1> -->
+            <h1>wordle <span>pop</span></h1>
             <div class="theme-switch-wrapper">
                 <label class="theme-switch" for="checkbox">
                     <input type="checkbox" id="checkbox" />
