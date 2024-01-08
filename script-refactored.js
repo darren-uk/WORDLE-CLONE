@@ -11,6 +11,7 @@ let nextLetter = 0;
 let currentGuess = [];
 let statContainer = document.getElementById("stat-container");
 let coloredKeys = document.querySelectorAll(".keyboard-button");
+let notificationBox = document.getElementById("notification-container");
 
 // Functions
 function startGame() {
@@ -52,6 +53,21 @@ function endGame() {
 	});
 }
 
+function insertNotification(e, i) {
+	const animationTime = "6500";
+	let nfc = document.createElement("div");
+	nfc.classList.add(e);
+	nfc.innerHTML = i;
+	nfc.style.animationName = "show";
+	nfc.style.animationDuration = animationTime + "ms";
+
+	notificationBox.appendChild(nfc);
+
+	setTimeout(() => {
+		notificationBox.removeChild(nfc);
+	}, animationTime);
+}
+
 function checkGuess() {
 	let row = document.getElementsByClassName("letter-row")[6 - guessesRemaining];
 	let guessString = "";
@@ -62,24 +78,14 @@ function checkGuess() {
 	}
 
 	if (guessString.length != 5) {
-		let redBox = document.getElementById("red-alert");
-		redBox.innerHTML =
-			'<img src="../images/shield-solid.svg"/>&nbsp; Not enough letters!';
-		redBox.style.display = "block";
-		setTimeout(() => {
-			redBox.style.display = "none";
-		}, 2000);
+		insertNotification("red-alert", "Not enough letters!");
+		// red
 		return;
 	}
 
 	if (!allWords.includes(guessString)) {
-		let redBox = document.getElementById("red-alert");
-		redBox.innerHTML =
-			'<img src="../images/shield-solid.svg"/>&nbsp; Word not in list !';
-		redBox.style.display = "block";
-		setTimeout(() => {
-			redBox.style.display = "none";
-		}, 2000);
+		insertNotification("red-alert", "word not in list!");
+		// red
 		return;
 	}
 
@@ -119,10 +125,7 @@ function checkGuess() {
 	}
 
 	if (guessString === answer) {
-		let greenBox = document.getElementById("green-alert");
-		greenBox.innerHTML =
-			'<img src="../images/trophy-solid.svg"/>&nbsp; You guessed right! <br> Game over!';
-		greenBox.style.display = "block";
+		insertNotification("green-alert", "You guessed right! Game over!");
 
 		guessesRemaining = 0;
 		winner();
@@ -131,9 +134,6 @@ function checkGuess() {
 			statContainer.classList.remove("back");
 			statContainer.classList.add("forward");
 		}, "3000");
-		setTimeout(() => {
-			greenBox.style.display = "none";
-		}, 3000);
 		return;
 	} else {
 		guessesRemaining -= 1;
@@ -141,12 +141,10 @@ function checkGuess() {
 		nextLetter = 0;
 
 		if (guessesRemaining === 0) {
-			let redBox = document.getElementById("red-alert");
-			redBox.innerHTML = `<img src="../images/shield-solid.svg"/>&nbsp; You've run out of guesses ! <br><br>Game Over ! <br><br>The right word was: <span>${answer}</span>`;
-			redBox.style.display = "block";
-			setTimeout(() => {
-				redBox.style.display = "none";
-			}, 4000);
+			insertNotification(
+				"red-alert",
+				`You've run out of guesses ! <br><br>Game Over ! <br><br>The right word was: ${answer}`
+			);
 
 			loser();
 			statsPanel();

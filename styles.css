@@ -107,37 +107,78 @@ header > button:hover {
 	overflow: hidden;
 }
 
-.green-alert,
-.red-alert {
-	display: none;
-	position: fixed;
+.notification-container {
+	position: absolute;
 	top: 12px;
 	right: 12px;
-	padding: 15px 3em 15px 3em;
-	width: max-content;
-	max-width: 25em;
-	/* width: 25em; */
-	transition: color 0.25s ease-in, background-color 0.2s ease-in;
-	z-index: 99999;
-	pointer-events: none;
-	color: var(--white);
-	border-radius: 3px;
-	text-align: center;
+	min-width: 50px;
+	min-height: 50px;
+	z-index: 20;
 }
 
-.red-alert span {
-	text-transform: uppercase;
-	font-size: 1.2rem;
-	font-weight: bold;
+.green-alert,
+.red-alert {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: white;
+	padding: 0.5em;
+	width: 38ch;
+	border-radius: 3px;
+	animation-timing-function: linear;
+	animation-iteration-count: 1;
+	opacity: 0;
+	/* Setting opacity to 0 stops flashing after animation complete */
+	padding: 15px 15px 15px 50px;
+	box-shadow: 0 0 12px #999;
+}
+
+.red-alert:before {
+	position: absolute;
+	left: 15px;
+	content: "";
+	width: 24px;
+	aspect-ratio: 1;
+	/* background: url("../images/shield.png"); */
+	background: url("../images/shield-solid.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+.green-alert:before {
+	position: absolute;
+	left: 15px;
+	content: "";
+	width: 24px;
+	aspect-ratio: 1;
+	/* background: url("../images/tick.png"); */
+	background: url("../images/check-solid.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
 }
 
 .red-alert {
-	background-color: var(--red);
-	transition: background-color 0.2s ease-in;
+	background: var(--red);
 }
 .green-alert {
-	background-color: var(--green);
-	transition: background-color 0.2s ease-in;
+	background: var(--green);
+}
+
+@keyframes show {
+	0% {
+		opacity: 0;
+	}
+	5% {
+		opacity: 0.95;
+	}
+	90% {
+		opacity: 0.95;
+	}
+	100% {
+		opacity: 0;
+	}
 }
 
 #game-board {
@@ -250,6 +291,7 @@ header {
 	justify-content: center;
 	align-items: center;
 	line-height: 1.2;
+	z-index: 30;
 }
 .back {
 	z-index: -1000;
