@@ -18,7 +18,7 @@ function startGame() {
 	currentGuess = [];
 	nextLetter = 0;
 	answer = commonWords[Math.floor(Math.random() * commonWords.length)];
-	console.log(answer); // show answer in console
+	console.log(answer); // show answer in console;
 	initBoard();
 	gameActive = true;
 }
@@ -184,30 +184,56 @@ function statsPanel() {
 	if (isNaN(percentage)) {
 		percentage = 0;
 	}
+	//layouts
+
+	const statLayout = `
+		<div class="statscreen">
+		<div class="close-box" id="close-box">X</div>
+		<h2>Wordle<span>pop</span></h2>
+		<p class="settings-line"><img src="./images/gear-solid.svg" class="settings-icon"><button class="settings-button" id="settings-button">Settings</button></p>
+		<hr>
+		<p>Win % = ${percentage}</p>
+		<p><span style="color:var(--yellow);">Current streak = ${currentStreak}</span></p>
+		<p>Games played = ${played}</p>
+		<p><span style="color:var(--green);">Games won = ${gamesWon}</span></P>
+		<p><span style="color:var(--red);">Games Lost = ${gamesLost}</span></p>
+		<p>Max streak = ${maxStreak}</p>
+
+		<hr>
+		<p class="start-line">Want to try again? <button class="start-button" id="stat-start-button">Start New Game</button></p>
+		</div>
+		`;
+
+	const settingsLayout = `
+		<div class="statscreen">
+		<div class="back-box" id="back-box">Back</div>
+		<div class="close-box" id="close-box">X</div>
+		<h2>Wordle<span>pop</span></h2>
+		<hr>
+		<button>Clear stats (excluding streak)</button>
+		<button>Clear streak</button>
+		<hr>
+		<button>select pop theme</button>
+		<button>select classic theme</button>
+		<hr>
+		<p> contact me via Twitter</p>
+		<a href="./info.html">Readme details</a>
+		<hr>
+		<p class="start-line">Want to try again? <button class="start-button" id="stat-start-button">Start New Game</button></p>
+		</div>
+		`;
 
 	//print statspanel
-	statContainer.innerHTML = `
-            <div class="statscreen">
-                <div class="close-box" id="close-box">X</div>
-                <h2>Wordle<span>pop</span></h2>
-                <p class="settings-line"><img src="./images/gear-solid.svg" class="settings-icon"><button class="settings-button" id="settings-button">Settings</button></p>
-                <hr>
-                <p>Win % = ${percentage}</p>
-                <p>Games played = ${played}</p>
-                <p><span style="color:var(--green);">Games won = ${gamesWon}</span></P>
-                <p><span style="color:var(--red);">Games Lost = ${gamesLost}</span></p>
+	statContainer.innerHTML = statLayout;
 
-                <p><span style="color:var(--yellow);">Current streak = ${currentStreak}</span></p>
-                <p>Max streak = ${maxStreak}</p>
-                <hr>
-				<p class="start-line">Want to try again? <button class="start-button" id="stat-start-button">Start New Game</button></p>
-            </div>`;
-
+	//close button - stat screen
 	const closeBox = document.getElementById("close-box");
 	closeBox.addEventListener("click", () => {
 		statContainer.classList.remove("forward");
 		statContainer.classList.add("back");
 	});
+
+	//start button - stat screen
 	const statStartButton = document.getElementById("stat-start-button");
 	statStartButton.addEventListener("click", () => {
 		statContainer.classList.remove("forward");
@@ -217,32 +243,23 @@ function statsPanel() {
 	});
 
 	// settings button
-
 	const settingsButton = document.querySelector("#settings-button");
 	settingsButton.addEventListener("click", () => {
-		statContainer.innerHTML = `
-		<div class="statscreen">
-				<div class="back-box" id="back-box">Back</div>
-                <div class="close-box" id="close-box">X</div>
-                <h2>Wordle<span>pop</span></h2>
-                <hr>
-				<button>Clear stats (excluding streak)</button>
-				<button>Clear streak</button>
-				<hr>
-				<button>select pop theme</button>
-				<button>select classic theme</button>
-				<hr>
-				<p> contact me via Twitter</p>
-				<a href="#">Readme details</a>
-                <hr>
-				<p class="start-line">Want to try again? <button class="start-button" id="stat-start-button">Start New Game</button></p>
-            </div>
-		`;
-
+		statContainer.innerHTML = settingsLayout;
+		// close button - settings screen
 		const closeBox = document.getElementById("close-box");
 		closeBox.addEventListener("click", () => {
 			statContainer.classList.remove("forward");
 			statContainer.classList.add("back");
+			statsPanel();
+		});
+		//start button - settings screen
+		const statStartButton = document.getElementById("stat-start-button");
+		statStartButton.addEventListener("click", () => {
+			statContainer.classList.remove("forward");
+			statContainer.classList.add("back");
+			endGame();
+			startGame();
 		});
 	});
 
@@ -434,9 +451,3 @@ fetch("words.json")
 			"Please try again later (error connecting with our server)";
 		console.log("ERROR " + error);
 	});
-
-let currentColorTheme = document.documentElement.getAttribute("color-theme");
-
-if ((currentColorTheme = "retro")) {
-	document.documentElement.setAttribute("data-theme", "dark-retro");
-}

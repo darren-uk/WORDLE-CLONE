@@ -1,8 +1,8 @@
 # Retro Wordle
 
-## Version 2
+## Version 3
 
-last updated : December 2023
+last updated : January 2024
 
 Live version at https://word-game-2023.netlify.app/
 
@@ -16,9 +16,17 @@ If you find a bug or want to add a word to the dictionary please contact me via 
 
 ### New features
 
-- Start game button now present on first load / page refresh
+- Added color themes pop & classic
 
-- Game can be started from inside stats panel
+- new settings menu
+
+  - change theme
+
+  - clear stats & streak
+
+  - contact information
+
+- Code stream lined and dependencies replaced with native code
 
 ### Bug fixes
 
@@ -31,6 +39,8 @@ If you find a bug or want to add a word to the dictionary please contact me via 
 - removed dependency for toastr.js / toastr.css / jquery.js
 
 - reseting stats / clear stats now show instantly in stats panel.
+
+- clear stats and streak seperatly.
 
 - Game can be restarted mid way through another game without letters repeating from previous game.
 
@@ -49,16 +59,15 @@ If you find a bug or want to add a word to the dictionary please contact me via 
 
 ### Roadmap
 
-- Add settings button to stat screen
-- Add settings panel
+- set proper notification animations
 
 In settings panel add
 
-- - clear settings without streak
-- - clear streak
-- - select pop color theme
-- - select classic color theme
-- - view contact and licence details
+- clear settings without streak
+- clear streak
+- select pop color theme
+- select classic color theme
+- view contact and licence details
 
 - Set up color schemes in css file. Classic-light, Classic-dark, Pop-light, Pop-dark
 

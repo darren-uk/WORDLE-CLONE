@@ -49,10 +49,6 @@
 	--stat-shadow: 8px 8px 8px rgba(41, 39, 39, 0.779);
 }
 
-[color-theme="retro"] {
-	--green: rgb(2, 63, 2);
-}
-
 * {
 	box-sizing: border-box;
 }
