@@ -1,0 +1,17 @@
+{
+	"short_name": "Wordle Unlimited",
+	"name": "Wordle Unlimited",
+	"version": "2.1",
+	"scope": "./",
+	"icons": [
+		{
+			"src": "./favicons/512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"start_url": "./index.html",
+	"display": "standalone",
+	"theme_color": "#000000",
+	"background_color": "#dbe5e6"
+}

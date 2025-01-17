@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap");
+
 * {
 	transition: color 0.2s ease-in, background-color 0.2s ease-in;
 }
@@ -135,6 +137,7 @@ header > button:hover {
 
 #keyboard-cont div {
 	display: flex;
+	padding: 0.1rem;
 }
 
 .keyboard-button {
@@ -145,13 +148,18 @@ header > button:hover {
 	height: 3.2rem;
 	font-size: 1rem;
 	font-weight: 700;
-	padding: 0.5rem;
-	margin: 0 4px;
+	padding: 0.65rem;
+	margin: 0 2px;
 	cursor: pointer;
 	text-transform: uppercase;
 	user-select: none;
 	background-color: var(--key-background);
 	color: var(--key-letter);
+}
+
+.keyboard-button:hover,
+.keyboard-button:focus-visible {
+	background: #cdd0d1;
 }
 .light-text {
 	color: white;
@@ -160,7 +168,7 @@ header > button:hover {
 .first-row,
 .second-row,
 .third-row {
-	margin-bottom: 1rem;
+	margin-bottom: 0.5rem;
 }
 
 button {
@@ -320,11 +328,21 @@ header {
 }
 .green-text {
 	color: var(--green);
-	background: #cdd0d1;
+	/* background: #cdd0d1; */
+	font-size: 0.8rem;
+	font-family: "Libre Franklin", serif;
+	font-optical-sizing: auto;
+	font-weight: bold;
+	font-style: normal;
 }
 .red-text {
 	color: var(--red);
-	background: #cdd0d1;
+	/* background: #cdd0d1; */
+	font-size: 0.8rem;
+	font-family: "Libre Franklin", serif;
+	font-optical-sizing: auto;
+	font-weight: bold;
+	font-style: normal;
 }
 
 /* DARK THEME SWITCH */
