@@ -159,7 +159,7 @@ header > button:hover {
 
 .keyboard-button:hover,
 .keyboard-button:focus-visible {
-	background: #cdd0d1;
+	background-color: #cdd0d1 !important;
 }
 .light-text {
 	color: white;
