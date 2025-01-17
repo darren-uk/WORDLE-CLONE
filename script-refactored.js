@@ -41,8 +41,15 @@ function initBoard() {
 function endGame() {
 	gameActive = false;
 	coloredKeys.forEach((c) => {
-		c.style.backgroundColor = "var(--key-background)";
-		c.classList.remove("light-text");
+		if (
+			c.classList.contains("red-text") ||
+			c.classList.contains("green-text")
+		) {
+			c.style.backgroundColor = "var(--action-key-background)";
+		} else {
+			c.style.backgroundColor = "var(--key-background)";
+			c.classList.remove("light-text");
+		}
 	});
 }
 
@@ -256,6 +263,7 @@ function deleteLetter() {
 	nextLetter -= 1;
 }
 
+// shades keyboard after guess
 function shadeKeyBoard(letter, color) {
 	for (const elem of document.getElementsByClassName("keyboard-button")) {
 		if (elem.textContent === letter) {

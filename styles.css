@@ -22,6 +22,7 @@
 	--letter-box-filled: var(--grey);
 	--letter-filled-color: #2c2b2b;
 	--key-background: rgb(233, 233, 237);
+	--action-key-background: rgb(233, 233, 237);
 	--key-letter: #000;
 	--stat-background: #fff;
 	--stat-text: #000;
@@ -40,6 +41,7 @@
 	--letter-box-filled: #393a3a;
 	--letter-filled-color: #fff;
 	--key-background: #818384;
+	--action-key-background: rgb(196, 196, 200);
 	--key-letter: #fff;
 	--stat-background: #121213;
 	--stat-text: #fff;
@@ -334,6 +336,7 @@ header {
 	font-optical-sizing: auto;
 	font-weight: bold;
 	font-style: normal;
+	background: var(--action-key-background);
 }
 .red-text {
 	color: transparent;
@@ -343,6 +346,7 @@ header {
 	font-optical-sizing: auto;
 	font-weight: bold;
 	font-style: normal;
+	background: var(--action-key-background);
 	background-image: url("./images/delete-left.svg");
 	background-repeat: no-repeat;
 	background-size: auto;
