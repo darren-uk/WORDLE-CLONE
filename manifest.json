@@ -1,12 +1,12 @@
 {
 	"short_name": "Wordle Unlimited",
-	"name": "Wordle Unlimited",
+	"name": "Wordle Unlimited v2.1",
 	"version": "2.1",
 	"scope": "./",
 	"icons": [
 		{
-			"src": "./favicons/96x96.png",
-			"sizes": "96x96",
+			"src": "./favicons/192x192.png",
+			"sizes": "192x192",
 			"type": "image/png"
 		},
 		{
