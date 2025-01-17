@@ -336,13 +336,17 @@ header {
 	font-style: normal;
 }
 .red-text {
-	color: var(--red);
+	color: transparent;
 	/* background: #cdd0d1; */
 	font-size: 0.8rem;
 	font-family: "Libre Franklin", serif;
 	font-optical-sizing: auto;
 	font-weight: bold;
 	font-style: normal;
+	background-image: url("./images/delete-left.svg");
+	background-repeat: no-repeat;
+	background-size: auto;
+	background-position: center;
 }
 
 /* DARK THEME SWITCH */
