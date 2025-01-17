@@ -188,12 +188,15 @@ function statsPanel() {
 	//reset button
 	const resetButton = document.querySelector("#reset-button");
 	resetButton.addEventListener("click", () => {
-		localStorage.removeItem("wins");
-		localStorage.removeItem("loses");
-		localStorage.setItem("current-streak", 0);
-		localStorage.setItem("max-streak", 0);
-		// statText();
-		statsPanel();
+		//pop up alert box
+		if (confirm("Press OK to confirm delete of all data")) {
+			localStorage.removeItem("wins");
+			localStorage.removeItem("loses");
+			localStorage.setItem("current-streak", 0);
+			statsPanel();
+		} else {
+			console.log("delete canceled");
+		}
 	});
 }
 statsPanel();
