@@ -5,13 +5,19 @@
 	"scope": "./",
 	"icons": [
 		{
+			"src": "./favicons/96x96.png",
+			"sizes": "96x96",
+			"type": "image/png"
+		},
+		{
 			"src": "./favicons/512x512.png",
 			"sizes": "512x512",
 			"type": "image/png"
 		}
 	],
 	"start_url": "./index.html",
-	"display": "fullscreen",
+	"display": "minimal-ui",
+	"prefer_related_applications": false,
 	"theme_color": "#000000",
 	"background_color": "#dbe5e6"
 }
