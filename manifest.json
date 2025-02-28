@@ -1,7 +1,7 @@
 {
 	"short_name": "Wordle Unlimited",
-	"name": "Wordle Unlimited v2.1",
-	"version": "2.1.0",
+	"name": "Wordle Unlimited v2.1.1",
+	"version": "2.1.1",
 	"scope": "./",
 	"icons": [
 		{
@@ -16,7 +16,7 @@
 		}
 	],
 	"start_url": "./index.html",
-	"display": "minimal-ui",
+	"display": "fullscreen",
 	"prefer_related_applications": false,
 	"theme_color": "#000000",
 	"background_color": "#dbe5e6"
